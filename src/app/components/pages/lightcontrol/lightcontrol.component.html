@@ -1,0 +1,19 @@
+<div id="light-bulb" class="off" [ngClass]="room.on ? 'on' : 'off'">
+    <span class="bulb off"></span>
+    <span class="bulb on"></span>
+</div>
+
+<div id="selectrooms">
+    <select class="form-control" [ngModel]="room" (ngModelChange)="setCurrentRoom($event)">
+        <option *ngFor="let r of rooms" [ngValue]="r">
+            {{r.name}}
+        </option>
+    </select>
+</div>
+
+<div href="" [ngClass]="room.on ? 'cube-switch active' : 'cube-switch'">
+    <span class="switch" (click)="lightBulb()">
+        <span class="switch-state off">Off</span>
+        <span class="switch-state on">On</span>
+    </span>
+</div>
