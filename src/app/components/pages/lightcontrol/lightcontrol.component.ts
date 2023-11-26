@@ -13,21 +13,28 @@ import { FormsModule } from '@angular/forms';
 export class LightcontrolComponent {
   room: Room;
   rooms: Room[];
+  sliderValue = 100;
 
   constructor(
   ) {
     this.rooms = [
-      { id: 1, name: 'Quarto', on: false },
-      { id: 2, name: 'Cozinha', on: false },
-      { id: 3, name: 'Sala', on: false },
-      { id: 4, name: 'Banheiro', on: false },
-      { id: 5, name: 'Lavanderia', on: false },
+      { id: 1, name: 'Quarto', on: false, brightness: 100 },
+      { id: 2, name: 'Cozinha', on: false, brightness: 100 },
+      { id: 3, name: 'Sala', on: false, brightness: 100 },
+      { id: 4, name: 'Banheiro', on: false, brightness: 100 },
+      { id: 5, name: 'Lavanderia', on: false, brightness: 100 },
     ];
     this.room = this.rooms[0];
   }
 
   lightBulb() {
-    this.room.on = this.room.on ? false : true;
+    if (this.room.on) {
+      this.room.on = false;
+      this.room.brightness = 100;
+    } else {
+      this.room.on = true;
+    }
+
   }
 
   setCurrentRoom(room: Room) {

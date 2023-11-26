@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { SidebarComponent } from './components/shared/sidebar/sidebar.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 
@@ -13,4 +13,14 @@ import { HeaderComponent } from './components/shared/header/header.component';
 })
 export class AppComponent {
   title = 'TonToff';
+  withBorder = true;
+
+  constructor(private router: Router) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        const hideOnRoutes = ['/lightcontrol'];
+        this.withBorder = !hideOnRoutes.includes(event.urlAfterRedirects.split('?')[0]);
+      }
+    });
+  }
 }
